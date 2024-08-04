@@ -9,7 +9,6 @@ function getComputerChoice(){
 }
 
 
-
 function getHumanChoice(){
     var humanChoice = prompt('choose')
     return humanChoice
@@ -63,17 +62,27 @@ function playRound(humanChoice, computerChoice){
 
 }
 
-function playGame(){
-    const humanSelection = getHumanChoice();
+function playGame(humanSelection){
+//    const humanSelection = getHumanChoice();
     const computerSelection = getComputerChoice();
 
     playRound(humanSelection, computerSelection);
     console.log('human score: '+humanScore)
     console.log('computer score: '+computerScore)
+    div.textContent = "human score: "+humanScore + ' computer Score: '+computerScore
 }
 
-playGame()
-playGame()
-playGame()
-playGame()
-playGame()
+
+let buttons = document.querySelectorAll("button");
+console.log(buttons)
+const div = document.createElement("div");
+const container = document.querySelector("body");
+container.appendChild(div)
+
+// we use the .forEach method to iterate through each button
+buttons.forEach((button) => {
+  // and for each one we add a 'click' listener
+  button.addEventListener("click", () => {
+    playGame(button.id);
+  });
+});
